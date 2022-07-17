@@ -40,4 +40,9 @@ func fire():
 	get_tree().get_root().call_deferred("add_child", bulletInstance)
 	
 func kill():
-	
+	get_tree().reload_current_scene()
+
+
+func _on_Area2D_body_entered(body):
+	if "Enemy" in body.name:
+		kill()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CircleOutline.png-419ca44770ec6510de0aaff05ee5fc80.stex"
+path="res://.import/alphamask.png-3a44c46e17a38516368e8248876f594b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CircleOutline.png"
-dest_files=[ "res://.import/CircleOutline.png-419ca44770ec6510de0aaff05ee5fc80.stex" ]
+source_file="res://alphamask.png"
+dest_files=[ "res://.import/alphamask.png-3a44c46e17a38516368e8248876f594b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
