@@ -1,16 +1,18 @@
 extends KinematicBody2D
 
-# https://www.youtube.com/watch?v=HycyFNQfqI0&ab_channel=EliCuaycong
+var bulletSpeed = 500
+var moveSpeed = 100
 
-var bulletSpeed = 1000
-var moveSpeed = 250
+var dieHitSpeed = 100
 
 var bullet = preload("res://Bullet.tscn")
+
+var doesBounce = false
+var doesKnockback = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 func _physics_process(delta):
 	var motion = Vector2()
@@ -34,15 +36,24 @@ func _physics_process(delta):
 	
 func fire():
 	var bulletInstance = bullet.instance()
-	bulletInstance.position = get_global_position()
+	bulletInstance.init_bullet(doesBounce, doesKnockback)
+	bulletInstance.position = get_global_position() + (transform.x*15)
 	bulletInstance.rotation_degrees = rotation_degrees
 	bulletInstance.apply_impulse(Vector2(), Vector2(bulletSpeed, 0).rotated(rotation))
 	get_tree().get_root().call_deferred("add_child", bulletInstance)
 	
 func kill():
-	get_tree().reload_current_scene()
+	pass
+	#player deaded
+	#get_tree().reload_current_scene()
 
+func update_bullets(b, k):
+	doesBounce = b
+	doesKnockback = k
 
 func _on_Area2D_body_entered(body):
 	if "Enemy" in body.name:
 		kill()
+	if "Die" in body.name:
+		body.apply_impulse(Vector2(), (position - body.position).normalized() * dieHitSpeed)
+		#reroll die
